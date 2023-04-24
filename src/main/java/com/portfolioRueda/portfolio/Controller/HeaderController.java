@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Header;
 import com.portfolioRueda.portfolio.Interface.IHeaderService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class HeaderController {
         return iHeaderService.findHeader((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("header/post")
     public String createHeader(@RequestBody Header header){
         iHeaderService.saveHeader(header);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("header/delete/{id}")
     public String deleteHeader(@PathVariable Long id){
         iHeaderService.deleteHeader(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("header/put/{id}")
     public String editHeader(@PathVariable Long id, 
                               @RequestParam("logo_arg_programa") String newLogoArgPrograma,

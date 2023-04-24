@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Skill;
 import com.portfolioRueda.portfolio.Interface.ISkillService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class SkillController {
         return iSkillService.findSkill((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("skill/post")
     public String createSkill(@RequestBody Skill skill){
         iSkillService.saveSkill(skill);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("skill/delete/{id}")
     public String deleteSkill(@PathVariable Long id){
         iSkillService.deleteSkill(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("skill/put/{id}")
     public String editSkill(@PathVariable Long id, 
                               @RequestParam("name") String newName,

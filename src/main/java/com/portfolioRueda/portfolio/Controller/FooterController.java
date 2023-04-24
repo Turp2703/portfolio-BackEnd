@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Footer;
 import com.portfolioRueda.portfolio.Interface.IFooterService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class FooterController {
         return iFooterService.findFooter((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("footer/post")
     public String createFooter(@RequestBody Footer footer){
         iFooterService.saveFooter(footer);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("footer/delete/{id}")
     public String deleteFooter(@PathVariable Long id){
         iFooterService.deleteFooter(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("footer/put/{id}")
     public String editFooter(@PathVariable Long id, 
                               @RequestParam("name") String newName,

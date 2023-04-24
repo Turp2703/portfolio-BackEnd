@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Proyecto;
 import com.portfolioRueda.portfolio.Interface.IProyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class ProyectoController {
         return iProyectoService.findProyecto((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("proyecto/post")
     public String createProyecto(@RequestBody Proyecto proyecto){
         iProyectoService.saveProyecto(proyecto);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("proyecto/delete/{id}")
     public String deleteProyecto(@PathVariable Long id){
         iProyectoService.deleteProyecto(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("proyecto/put/{id}")
     public String editProyecto(@PathVariable Long id, 
                               @RequestParam("picture") String newPicture,

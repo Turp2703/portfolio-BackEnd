@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Profile;
 import com.portfolioRueda.portfolio.Interface.IProfileService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class ProfileController {
         return iProfileService.findProfile((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("profile/post")
     public String createProfile(@RequestBody Profile profile){
         iProfileService.saveProfile(profile);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("profile/delete/{id}")
     public String deleteProfile(@PathVariable Long id){
         iProfileService.deleteProfile(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("profile/put/{id}")
     public String editProfile(@PathVariable Long id, 
                               @RequestParam("background") String newBackground,

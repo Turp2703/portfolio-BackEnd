@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Experiencia;
 import com.portfolioRueda.portfolio.Interface.IExperienciaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class ExperienciaController {
         return iExperienciaService.findExperiencia((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("experiencia/post")
     public String createExperiencia(@RequestBody Experiencia experiencia){
         iExperienciaService.saveExperiencia(experiencia);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("experiencia/delete/{id}")
     public String deleteExperiencia(@PathVariable Long id){
         iExperienciaService.deleteExperiencia(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("experiencia/put/{id}")
     public String editProfile(@PathVariable Long id, 
                               @RequestParam("logo") String newLogo,

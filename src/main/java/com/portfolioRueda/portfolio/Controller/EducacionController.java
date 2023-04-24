@@ -4,6 +4,7 @@ import com.portfolioRueda.portfolio.Entity.Educacion;
 import com.portfolioRueda.portfolio.Interface.IEducacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class EducacionController {
         return iEducacionService.findEducacion((long)1);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("educacion/post")
     public String createEducacion(@RequestBody Educacion educacion){
         iEducacionService.saveEducacion(educacion);
         return "Create Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("educacion/delete/{id}")
     public String deleteEducacion(@PathVariable Long id){
         iEducacionService.deleteEducacion(id);
         return "Delete Success";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("educacion/put/{id}")
     public String editEducacion(@PathVariable Long id, 
                               @RequestParam("picture") String newPicture,
