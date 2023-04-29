@@ -25,6 +25,11 @@ public class AcercaDeController {
         return iAcercaDeService.getAcercaDe();
     }
     
+    @GetMapping("acercaDe/get/{id}")
+    public AcercaDe findAcercaDe(@PathVariable Long id){
+        return iAcercaDeService.findAcercaDe(id);
+    }
+    
     @GetMapping("acercaDe/get/main")
     public AcercaDe findAcercaDe(){
         return iAcercaDeService.findAcercaDe((long)1);

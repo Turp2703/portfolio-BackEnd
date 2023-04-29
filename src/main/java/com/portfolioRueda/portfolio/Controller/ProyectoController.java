@@ -25,6 +25,11 @@ public class ProyectoController {
         return iProyectoService.getProyecto();
     }
     
+    @GetMapping("proyecto/get/{id}")
+    public Proyecto findProyecto(@PathVariable Long id){
+        return iProyectoService.findProyecto(id);
+    }
+    
     @GetMapping("proyecto/get/main")
     public Proyecto findProyecto(){
         return iProyectoService.findProyecto((long)1);

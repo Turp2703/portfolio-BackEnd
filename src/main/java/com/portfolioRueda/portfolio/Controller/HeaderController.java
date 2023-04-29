@@ -25,6 +25,11 @@ public class HeaderController {
         return iHeaderService.getHeader();
     }
     
+    @GetMapping("header/get/{id}")
+    public Header findHeader(@PathVariable Long id){
+        return iHeaderService.findHeader(id);
+    }
+    
     @GetMapping("header/get/main")
     public Header findHeader(){
         return iHeaderService.findHeader((long)1);

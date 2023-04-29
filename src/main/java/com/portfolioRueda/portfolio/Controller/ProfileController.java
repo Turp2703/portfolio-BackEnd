@@ -25,6 +25,11 @@ public class ProfileController {
         return iProfileService.getProfile();
     }
     
+    @GetMapping("profile/get/{id}")
+    public Profile findProfile(@PathVariable Long id){
+        return iProfileService.findProfile(id);
+    }
+        
     @GetMapping("profile/get/main")
     public Profile findProfile(){
         return iProfileService.findProfile((long)1);

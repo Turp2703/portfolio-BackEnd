@@ -25,9 +25,9 @@ public class EducacionController {
         return iEducacionService.getEducacion();
     }
     
-    @GetMapping("educacion/get/main")
-    public Educacion findEducacion(){
-        return iEducacionService.findEducacion((long)1);
+    @GetMapping("educacion/get/{id}")
+    public Educacion findEducacion(@PathVariable Long id){
+        return iEducacionService.findEducacion(id);
     }
     
     @PreAuthorize("hasRole('ADMIN')")

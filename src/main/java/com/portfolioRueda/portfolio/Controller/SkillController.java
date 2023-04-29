@@ -25,6 +25,11 @@ public class SkillController {
         return iSkillService.getSkill();
     }
     
+    @GetMapping("skill/get/{id}")
+    public Skill findSkill(@PathVariable Long id){
+        return iSkillService.findSkill(id);
+    }
+    
     @GetMapping("skill/get/main")
     public Skill findSkill(){
         return iSkillService.findSkill((long)1);

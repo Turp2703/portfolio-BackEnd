@@ -25,6 +25,11 @@ public class FooterController {
         return iFooterService.getFooter();
     }
     
+    @GetMapping("footer/get/{id}")
+    public Footer findFooter(@PathVariable Long id){
+        return iFooterService.findFooter(id);
+    }
+    
     @GetMapping("footer/get/main")
     public Footer findFooter(){
         return iFooterService.findFooter((long)1);
