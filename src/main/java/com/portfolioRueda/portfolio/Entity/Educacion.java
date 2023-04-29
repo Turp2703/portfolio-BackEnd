@@ -15,17 +15,17 @@ import lombok.Setter;
 public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull
-    @Size(min = 1, max= 100, message = "Longitud invalida")
+    private int id;
+
     private String picture;
-    
-    @NotNull
-    @Size(min = 1, max= 100, message = "Longitud invalida")
     private String title;
-    
-    @NotNull
-    @Size(min = 1, max= 100, message = "Longitud invalida")
     private String origin;
+
+    public Educacion() {
+    }
+    public Educacion(String picture, String title, String origin) {
+        this.picture = picture;
+        this.title = title;
+        this.origin = origin;
+    }
 }
