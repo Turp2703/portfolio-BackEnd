@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("skill")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class SkillController {
     @Autowired SkillService skillService;
     
