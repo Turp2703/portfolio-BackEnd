@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("educacion")
-@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
+//Local
+@CrossOrigin(origins = "http://localhost:4200")
+//Deploy
+//@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class EducacionController {
     @Autowired EducacionService educacionService;
     
@@ -51,11 +54,14 @@ public class EducacionController {
         if(StringUtils.isBlank(dtoEducacion.getOrigin())){
             return new ResponseEntity(new msg("Origen obligatorio"), HttpStatus.BAD_REQUEST);
         }
+        if(StringUtils.isBlank(dtoEducacion.getYear())){
+            return new ResponseEntity(new msg("Año obligatorio"), HttpStatus.BAD_REQUEST);
+        }
         if(educacionService.existsByTitle(dtoEducacion.getTitle())){
             return new ResponseEntity(new msg("Educacion con ese titulo ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = new Educacion(dtoEducacion.getPicture(), dtoEducacion.getTitle(), dtoEducacion.getOrigin());
+        Educacion educacion = new Educacion(dtoEducacion.getPicture(), dtoEducacion.getTitle(), dtoEducacion.getOrigin(), dtoEducacion.getYear());
         educacionService.save(educacion);
         
         return new ResponseEntity(new msg("Educacion agregada"), HttpStatus.OK);
@@ -76,11 +82,15 @@ public class EducacionController {
         if(StringUtils.isBlank(dtoEducacion.getOrigin())){
             return new ResponseEntity(new msg("Origen obligatorio"), HttpStatus.BAD_REQUEST);
         }
+        if(StringUtils.isBlank(dtoEducacion.getYear())){
+            return new ResponseEntity(new msg("Año obligatorio"), HttpStatus.BAD_REQUEST);
+        }
         
         Educacion educacion = educacionService.getById(id).get();
         educacion.setPicture(dtoEducacion.getPicture());
         educacion.setTitle(dtoEducacion.getTitle());
         educacion.setOrigin(dtoEducacion.getOrigin());
+        educacion.setYear(dtoEducacion.getYear());
         
         educacionService.save(educacion);
         

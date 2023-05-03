@@ -15,13 +15,17 @@ public class DtoEducacion {
     
     @NotBlank
     private String origin;
+    
+    @NotBlank
+    private String year;
 
     public DtoEducacion() {
     }
     
-    public DtoEducacion(String picture, String title, String origin) {
+    public DtoEducacion(String picture, String title, String origin, String year) {
         this.picture = picture;
         this.title = title;
         this.origin = origin;
+        this.year = year;
     }
 }

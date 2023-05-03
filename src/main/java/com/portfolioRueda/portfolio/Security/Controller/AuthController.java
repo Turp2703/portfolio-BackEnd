@@ -30,7 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
+//Local
+@CrossOrigin(origins = "http://localhost:4200")
+//Deploy
+//@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class AuthController {
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired AuthenticationManager authenticationManager;

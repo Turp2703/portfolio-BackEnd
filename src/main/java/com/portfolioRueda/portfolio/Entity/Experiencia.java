@@ -18,12 +18,16 @@ public class Experiencia {
     private String logo;
     private String name;
     private String place;
+    private String periodStart;
+    private String periodEnd;
 
     public Experiencia() {
     }
-    public Experiencia(String logo, String name, String place) {
+    public Experiencia(String logo, String name, String place, String periodStart, String periodEnd) {
         this.logo = logo;
         this.name = name;
         this.place = place;
+        this.periodStart = periodStart;
+        this.periodEnd = periodEnd;
     }
 }

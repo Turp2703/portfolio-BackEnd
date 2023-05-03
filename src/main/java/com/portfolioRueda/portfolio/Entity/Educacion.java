@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,12 +18,14 @@ public class Educacion {
     private String picture;
     private String title;
     private String origin;
+    private String year;
 
     public Educacion() {
     }
-    public Educacion(String picture, String title, String origin) {
+    public Educacion(String picture, String title, String origin, String year) {
         this.picture = picture;
         this.title = title;
         this.origin = origin;
+        this.year = year;
     }
 }

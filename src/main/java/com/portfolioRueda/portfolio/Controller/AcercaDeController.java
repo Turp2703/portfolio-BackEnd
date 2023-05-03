@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
+//Local
+@CrossOrigin(origins = "http://localhost:4200")
+//Deploy
+//@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class AcercaDeController {
     @Autowired IAcercaDeService iAcercaDeService;
     

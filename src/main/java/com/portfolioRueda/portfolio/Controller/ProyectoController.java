@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("proyecto")
-@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
+//Local
+@CrossOrigin(origins = "http://localhost:4200")
+//Deploy
+//@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class ProyectoController {
     @Autowired ProyectoService proyectoService;
     
@@ -55,7 +58,7 @@ public class ProyectoController {
             return new ResponseEntity(new msg("Proyecto con ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        Proyecto proyecto = new Proyecto(dtoProyecto.getPicture(), dtoProyecto.getName(), dtoProyecto.getDescription());
+        Proyecto proyecto = new Proyecto(dtoProyecto.getPicture(), dtoProyecto.getName(), dtoProyecto.getDescription(), dtoProyecto.getLink());
         proyectoService.save(proyecto);
         
         return new ResponseEntity(new msg("Proyecto agregado"), HttpStatus.OK);
@@ -81,6 +84,7 @@ public class ProyectoController {
         proyecto.setPicture(dtoProyecto.getPicture());
         proyecto.setName(dtoProyecto.getName());
         proyecto.setDescription(dtoProyecto.getDescription());
+        proyecto.setLink(dtoProyecto.getLink());
         
         proyectoService.save(proyecto);
         

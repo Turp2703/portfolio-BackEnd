@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("experiencia")
-@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
+//Local
+@CrossOrigin(origins = "http://localhost:4200")
+//Deploy
+//@CrossOrigin(origins = "https://rueda-portfolio-frontend.web.app/")
 public class ExperienciaController {
     @Autowired ExperienciaService experienciaService;
     
@@ -51,11 +54,17 @@ public class ExperienciaController {
         if(StringUtils.isBlank(dtoExperiencia.getPlace())){
             return new ResponseEntity(new msg("Lugar obligatorio"), HttpStatus.BAD_REQUEST);
         }
+        if(StringUtils.isBlank(dtoExperiencia.getPeriodStart())){
+            return new ResponseEntity(new msg("Periodo obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if(StringUtils.isBlank(dtoExperiencia.getPeriodEnd())){
+            return new ResponseEntity(new msg("Periodo obligatorio"), HttpStatus.BAD_REQUEST);
+        }
         if(experienciaService.existsByName(dtoExperiencia.getName())){
             return new ResponseEntity(new msg("Experiencia con ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        Experiencia experiencia = new Experiencia(dtoExperiencia.getLogo(), dtoExperiencia.getName(), dtoExperiencia.getPlace());
+        Experiencia experiencia = new Experiencia(dtoExperiencia.getLogo(), dtoExperiencia.getName(), dtoExperiencia.getPlace(), dtoExperiencia.getPeriodStart(), dtoExperiencia.getPeriodEnd());
         experienciaService.save(experiencia);
         
         return new ResponseEntity(new msg("Experiencia agregada"), HttpStatus.OK);
@@ -76,11 +85,19 @@ public class ExperienciaController {
         if(StringUtils.isBlank(dtoExperiencia.getPlace())){
             return new ResponseEntity(new msg("Lugar obligatorio"), HttpStatus.BAD_REQUEST);
         }
+                if(StringUtils.isBlank(dtoExperiencia.getPeriodStart())){
+            return new ResponseEntity(new msg("Periodo obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if(StringUtils.isBlank(dtoExperiencia.getPeriodEnd())){
+            return new ResponseEntity(new msg("Periodo obligatorio"), HttpStatus.BAD_REQUEST);
+        }
         
         Experiencia experiencia = experienciaService.getById(id).get();
         experiencia.setLogo(dtoExperiencia.getLogo());
         experiencia.setName(dtoExperiencia.getName());
         experiencia.setPlace(dtoExperiencia.getPlace());
+        experiencia.setPeriodStart(dtoExperiencia.getPeriodStart());
+        experiencia.setPeriodEnd(dtoExperiencia.getPeriodEnd());
         
         experienciaService.save(experiencia);
         
