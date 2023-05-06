@@ -2,11 +2,11 @@
 
 <p id="description">Proyecto Final del curso YoProgramo 2da etapa del Plan Argentina Programa</p>
 
-<h2>🚀 Link</h2>
+<h2>Link</h2>
 
 [https://rueda-portfolio-frontend.web.app/](https://rueda-portfolio-frontend.web.app/)
 
-<h2>🧐 Características</h2>
+<h2>Características</h2>
 Algunas de las características principales son: 
 
 *   Seguridad con JWT
@@ -14,7 +14,7 @@ Algunas de las características principales son:
 *   FrontEnd Dinamico
 *   Single Page Application (SPA)
   
-<h2>💻 Hecho en</h2>
+<h2>Hecho en</h2>
 
 Tecnologías usadas en el proyecto: 
   <p align="center">
